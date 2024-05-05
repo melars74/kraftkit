@@ -43,6 +43,7 @@ import (
 	"kraftkit.sh/cmdfactory"
 	"kraftkit.sh/log"
 	"kraftkit.sh/packmanager"
+	"kraftkit.sh/tui/confirm"
 	"kraftkit.sh/unikraft/app"
 )
 
@@ -137,6 +138,13 @@ func (opts *SetOptions) Run(ctx context.Context, args []string) error {
 	// Check if the file exists
 	// TODO: offer option to start in interactive mode
 	if _, err := os.Stat(dotconfig); os.IsNotExist(err) {
+		imode, ierr := confirm.NewConfirm("Do you want to start in interactive mode:")
+		if ierr != nil {
+			return ierr
+		}
+		if imode {
+
+		}
 		return fmt.Errorf("dotconfig file does not exist: %s", dotconfig)
 	}
 
