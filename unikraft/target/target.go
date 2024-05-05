@@ -29,6 +29,9 @@ type Target interface {
 	// Kernel is the path to the kernel for this target.
 	Kernel() string
 
+	// SetKernelPath sets the path for the kernel and updates configurations
+	SetKernelPath(path string)
+
 	// KernelDbg is the path to the symbolic (unstripped) kernel for this target.
 	KernelDbg() string
 
@@ -109,6 +112,11 @@ func (tc *TargetConfig) Platform() plat.Platform {
 
 func (tc *TargetConfig) Kernel() string {
 	return tc.kernel
+}
+
+func (tc *TargetConfig) SetKernelPath(path string) {
+	tc.kernel = path
+	tc.kconfig.Set("KERNEL_PATH", path)
 }
 
 func (tc *TargetConfig) KernelDbg() string {

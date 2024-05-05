@@ -133,6 +133,8 @@ $(addprefix $(.PROXY), $(BIN)):
 		-ldflags='$(GO_LDFLAGS)' \
 		-o $(DISTDIR)/$@ \
 		$(WORKDIR)/cmd/$@
+# FIXME: mv DISTDIR to one denoted by flags
+mv $(DISTDIR)/$@ $(NEWDIR)
 
 .PHONY: tools
 tools: $(TOOLS)
