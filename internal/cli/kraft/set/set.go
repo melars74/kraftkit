@@ -44,6 +44,7 @@ import (
 	"kraftkit.sh/log"
 	"kraftkit.sh/packmanager"
 	"kraftkit.sh/tui/confirm"
+	"kraftkit.sh/tui/textinput"
 	"kraftkit.sh/unikraft/app"
 )
 
@@ -143,9 +144,20 @@ func (opts *SetOptions) Run(ctx context.Context, args []string) error {
 			return ierr
 		}
 		if imode {
-
+			dotconfig, err = textinput.NewTextInput(
+				"Path to dotconfig file:",
+				"Enter path",
+				"",
+			)
+			if err != nil {
+				return err
+			}
+			if dotconfig == "" {
+				return fmt.Errorf("dotconfig file does not exist: %s", dotconfig)
+			}
+		} else {
+			return fmt.Errorf("dotconfig file does not exist: %s", dotconfig)
 		}
-		return fmt.Errorf("dotconfig file does not exist: %s", dotconfig)
 	}
 
 	popts := []app.ProjectOption{
