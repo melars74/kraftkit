@@ -59,6 +59,7 @@ jobs:
 
       - name: Run cloud e2e tests
         env:
+          KRAFTCLOUD_ADDR: ${{ secrets.KRAFTCLOUD_ADDR }}
           KRAFTCLOUD_METRO: ${{ secrets.KRAFTCLOUD_METRO }}
           KRAFTCLOUD_TOKEN: ${{ secrets.KRAFTCLOUD_TOKEN }}
           KRAFTCLOUD_USER: ${{ env.KRAFTCLOUD_USER }}

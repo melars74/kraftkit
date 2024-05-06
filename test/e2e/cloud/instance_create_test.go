@@ -60,6 +60,10 @@ var _ = Describe("kraft cloud instance create", func() {
 	)
 
 	BeforeEach(func() {
+		if os.Getenv("KRAFTCLOUD_ADDR") == "" {
+			Skip("KRAFTCLOUD_ADDR is not set")
+		}
+
 		if os.Getenv("KRAFTCLOUD_TOKEN") == "" {
 			Skip("KRAFTCLOUD_TOKEN is not set")
 		}

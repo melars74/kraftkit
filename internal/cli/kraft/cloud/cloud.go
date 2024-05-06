@@ -28,6 +28,7 @@ import (
 )
 
 type CloudOptions struct {
+	Addr string  `long:"addr" env:"KRAFTCLOUD_ADDR" usage:"Set the KraftCloud addr"`
 	Metro string `long:"metro" env:"KRAFTCLOUD_METRO" usage:"Set the KraftCloud metro"`
 	Token string `long:"token" env:"KRAFTCLOUD_TOKEN" usage:"Set the KraftCloud token"`
 }
@@ -43,6 +44,9 @@ func NewCmd() *cobra.Command {
 			Manage resources on The Millisecond Platform.
 
 			Learn more & sign up for the beta at https://kraft.cloud
+
+			Specify a local address using the
+			%[1]sKRAFTCLOUD_ADDR%[1]s environmental variable.
 
 			Quickly switch between metros using the %[1]s--metro%[1]s flag or use the
 			%[1]sKRAFTCLOUD_METRO%[1]s environmental variable.

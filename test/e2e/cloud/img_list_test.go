@@ -25,6 +25,10 @@ var _ = Describe("kraft cloud img ls", func() {
 	var cfg *fcfg.Config
 
 	BeforeEach(func() {
+		if os.Getenv("KRAFTCLOUD_ADDR") == "" {
+			Skip("KRAFTCLOUD_ADDR is not set")
+		}
+
 		if os.Getenv("KRAFTCLOUD_TOKEN") == "" {
 			Skip("KRAFTCLOUD_TOKEN is not set")
 		}
